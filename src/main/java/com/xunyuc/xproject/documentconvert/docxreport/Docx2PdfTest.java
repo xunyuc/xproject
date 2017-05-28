@@ -1,29 +1,17 @@
-package com.xunyuc.xproject.documentconvert.docx2pdf;
+package com.xunyuc.xproject.documentconvert.docxreport;
 
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
-import fr.opensagres.xdocreport.converter.ConverterRegistry;
 import fr.opensagres.xdocreport.converter.ConverterTypeTo;
-import fr.opensagres.xdocreport.converter.IConverter;
 import fr.opensagres.xdocreport.converter.Options;
 import fr.opensagres.xdocreport.core.document.DocumentKind;
 import fr.opensagres.xdocreport.itext.extension.font.IFontProvider;
 import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.docx4j.convert.out.pdf.PdfConversion;
-import org.docx4j.convert.out.pdf.viaXSLFO.Conversion;
-import org.docx4j.fonts.IdentityPlusMapper;
-import org.docx4j.fonts.Mapper;
-import org.docx4j.fonts.PhysicalFont;
-import org.docx4j.fonts.PhysicalFonts;
-import org.docx4j.jaxb.Context;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-import org.docx4j.wml.RFonts;
 
 import java.awt.*;
 import java.io.*;
-import java.net.URL;
 
 /**
  * Created by Xunyuc on 2017/5/28.
@@ -33,8 +21,8 @@ public class Docx2PdfTest {
     public static void main(String[] args) {
         String inputFile = "E:\\temp\\test.docx";
         String outFile = "E:\\temp\\test.pdf";
-        Docx2PdfTest.xdocreport(inputFile, outFile);
-//        Docx2PdfTest.xdocreport2(inputFile, outFile);
+//        Docx2PdfTest.xdocreport(inputFile, outFile);
+        Docx2PdfTest.xdocreport2(inputFile, outFile);
 
     }
 
@@ -42,8 +30,8 @@ public class Docx2PdfTest {
      * convert docx 2 PDF/XHTML by using Apache POI + iText
      * fr.opensagres.xdocreport.converter.docx.xwpf
      *
-     * convert docx 2 PDF/XHTML by using docx4j + XSL-FO and FOP
-     * fr.opensagres.xdocreport.converter.docx.docx4j
+     * convert docx 2 PDF/XHTML by using docx4j + XSL-FO and FOP:
+     * fr.opensagres.xdocreport.converter.docx.docxreport
      *
      * @param inputFile
      * @param outFile
