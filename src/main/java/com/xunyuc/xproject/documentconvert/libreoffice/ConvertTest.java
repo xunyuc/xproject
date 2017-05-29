@@ -19,6 +19,10 @@ public class ConvertTest {
     public static void main(String[] args) {
         String inputFile = "E:\\temp\\test.docx";
         String outFile = "E:\\temp\\test.pdf";
+        if (args != null && args.length>1 ) {
+            inputFile = args[0];
+            outFile = args[1];
+        }
         ConvertTest.convert2Pdf(inputFile, outFile);
     }
 
@@ -40,13 +44,19 @@ public class ConvertTest {
 
         if (docFile.exists()) {
             if (!pdfFile.exists()) {
-                OpenOfficeConnection connection = new SocketOpenOfficeConnection("192.168.80.131", 8100);
+//                OpenOfficeConnection connection = new SocketOpenOfficeConnection("192.168.80.131", 8100);
+                OpenOfficeConnection connection = new SocketOpenOfficeConnection(8100);
                 try {
                     connection.connect();
-//                    DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
-                    DocumentConverter converter = new StreamOpenOfficeDocumentConverter(connection);
+                    /*
+                        Stream-based conversions are slower than the default file-based ones (provided by OpenOfficeDocumentConverter)
+                        but they allow to run the OpenOffice.org service on a different machine,
+                        or under a different system user on the same machine without file permission problems.
+                     */
+//                    DocumentConverter converter = new StreamOpenOfficeDocumentConverter(connection);
+                    DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
 
-//                    converter.convert(docFile, pdfFile);
+
                     converter.convert(docFile, inputFormat, pdfFile, null);
 
                     System.out.println("****pdf转换成功，PDF输出：" + pdfFile.getPath()+ "****");
