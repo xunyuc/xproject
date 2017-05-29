@@ -20,7 +20,7 @@ import java.util.List;
 public class Ppt2PdfConvert {
 
     public static void main(String[] args) {
-        String inputFile = "E:\\temp\\test.ppt";
+        String inputFile = "E:\\temp\\findbugs修改总结.ppt";
         String outFile = "E:\\temp\\test-ppt.pdf";
         try {
             Ppt2PdfConvert.convert(inputFile, outFile);

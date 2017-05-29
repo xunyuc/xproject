@@ -13,6 +13,10 @@ import java.io.File;
 
 /**
  * Created by Xunyuc on 2017/5/28.
+ *
+ * /usr/bin
+ * ./soffice --accept="socket,host=0,port=8100;urp;StarOffice.ServiceManager" --headless --nofirststartwizard --nologo --nodefault --nocrashreport --nolockcheck
+ *  ./soffice --headless --accept="socket,host=0,port=8100;urp;" --nofirststartwizard instead &
  */
 public class ConvertTest {
 
