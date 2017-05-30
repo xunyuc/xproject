@@ -7,6 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>xproject Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+    <poi.version>3.15</poi.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -77,22 +82,22 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
-      <version>3.16</version>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
-      <version>3.16</version>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml-schemas</artifactId>
-      <version>3.16</version>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-scratchpad</artifactId>
-      <version>3.16</version>
+      <version>${poi.version}</version>
     </dependency>
     <dependency>
       <groupId>com.itextpdf</groupId>

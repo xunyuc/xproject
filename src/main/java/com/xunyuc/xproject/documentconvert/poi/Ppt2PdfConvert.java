@@ -1,6 +1,6 @@
 package com.xunyuc.xproject.documentconvert.poi;
 
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.poi.hslf.usermodel.*;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class Ppt2PdfConvert {
 
     public static void main(String[] args) {
-        String inputFile = "E:\\temp\\findbugs修改总结.ppt";
+        String inputFile = "E:\\temp\\test.ppt";
         String outFile = "E:\\temp\\test-ppt.pdf";
         try {
             Ppt2PdfConvert.convert(inputFile, outFile);
@@ -29,6 +29,13 @@ public class Ppt2PdfConvert {
         }
     }
 
+    /**
+     * 使用poi自带的ppt画图方法draw
+     * TODO 图表问题
+     * @param inputFile
+     * @param outFile
+     * @throws Exception
+     */
     public static void convert(String inputFile, String outFile) throws Exception {
         HSLFSlideShow ppt = new HSLFSlideShow(new FileInputStream(inputFile));
         Dimension pgsize = ppt.getPageSize();

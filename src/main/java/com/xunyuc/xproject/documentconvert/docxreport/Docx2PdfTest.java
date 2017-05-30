@@ -2,7 +2,9 @@ package com.xunyuc.xproject.documentconvert.docxreport;
 
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.BaseFont;
+import fr.opensagres.xdocreport.converter.ConverterRegistry;
 import fr.opensagres.xdocreport.converter.ConverterTypeTo;
+import fr.opensagres.xdocreport.converter.IConverter;
 import fr.opensagres.xdocreport.converter.Options;
 import fr.opensagres.xdocreport.core.document.DocumentKind;
 import fr.opensagres.xdocreport.itext.extension.font.IFontProvider;
@@ -20,13 +22,15 @@ public class Docx2PdfTest {
 
     public static void main(String[] args) {
         String inputFile = "E:\\temp\\test.docx";
-        String outFile = "E:\\temp\\test.pdf";
+        String outFile = "E:\\temp\\test-docx.pdf";
 //        Docx2PdfTest.xdocreport(inputFile, outFile);
         Docx2PdfTest.xdocreport2(inputFile, outFile);
 
     }
 
     /**
+     * TODO 中文字体问题
+     * TODO 统计图表问题
      * convert docx 2 PDF/XHTML by using Apache POI + iText
      * fr.opensagres.xdocreport.converter.docx.xwpf
      *
@@ -69,6 +73,8 @@ public class Docx2PdfTest {
     }
 
     /**
+     * TODO 统计图表问题
+     *
      * org.apache.poi.xwpf.converter.pdf
      * https://github.com/opensagres/xdocreport/wiki/XWPFConverterPDFViaIText
      *

@@ -16,7 +16,8 @@ import java.io.File;
  *
  * /usr/bin
  * ./soffice --accept="socket,host=0,port=8100;urp;StarOffice.ServiceManager" --headless --nofirststartwizard --nologo --nodefault --nocrashreport --nolockcheck
- *  ./soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard &
+ *  ./soffice --headless --accept="socket,host=127.0.0.1,port=8100;urp;" --nofirststartwizard &
+ *  ./soffice --headless --accept="socket,host=0,port=8100;urp;" --nofirststartwizard &
  *  netstat -ntlp|grep 8100
  *  进入命令行   ps -a
  *  找到进openoffice进程ID

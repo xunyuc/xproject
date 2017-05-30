@@ -21,7 +21,7 @@ import java.util.List;
 public class Pptx2PdfConvert {
 
     public static void main(String[] args) {
-        String inputFile = "E:\\temp\\findbugs修改总结.pptx";
+        String inputFile = "E:\\temp\\test.pptx";
         String outFile = "E:\\temp\\test-pptx.pdf";
         try {
             Pptx2PdfConvert.convert(inputFile, outFile);
@@ -32,6 +32,13 @@ public class Pptx2PdfConvert {
     }
 
 
+    /**
+     * 使用poi自带的ppt画图方法draw
+     * TODO 图表问题
+     * @param inputFile
+     * @param outFile
+     * @throws Exception
+     */
     public static void convert(String inputFile, String outFile) throws Exception {
 
 
