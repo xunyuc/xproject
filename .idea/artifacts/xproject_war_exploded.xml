@@ -87,6 +87,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-oxm:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.32" />
         </element>
       </element>
       <element id="directory" name="META-INF">

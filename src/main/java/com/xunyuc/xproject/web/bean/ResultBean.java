@@ -1,5 +1,6 @@
 package com.xunyuc.xproject.web.bean;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import javax.xml.bind.JAXBContext;
@@ -58,8 +59,10 @@ public class ResultBean {
 //		marshal.setProperty(Marshaller.JAXB_FRAGMENT, false);// 是否省略xml头信息
 //        marshal.marshal(resultBean,System.out);
 
-        Jaxb2Marshaller marshal = new Jaxb2Marshaller();
-        marshal.setPackagesToScan("com.xunyuc.xproject.web");
-        marshal.marshal(resultBean, new StreamResult(System.out));
+//        Jaxb2Marshaller marshal = new Jaxb2Marshaller();
+//        marshal.setPackagesToScan("com.xunyuc.xproject.web");
+//        marshal.marshal(resultBean, new StreamResult(System.out));
+
+        System.out.println(JSONObject.toJSON(resultBean));
     }
 }

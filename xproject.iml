@@ -112,5 +112,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.3.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:4.3.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.32" level="project" />
   </component>
 </module>
