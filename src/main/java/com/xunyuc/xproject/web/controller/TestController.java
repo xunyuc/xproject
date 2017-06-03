@@ -18,6 +18,7 @@ public class TestController {
 
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     public ResultBean test1(@RequestParam(value = "format"  ,required = false) String format) {
+        System.out.println("in TestController ");
         ResultBean resultBean = new ResultBean();
         resultBean.setResultCode("002");
         resultBean.setResultMessage(format);
