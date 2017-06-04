@@ -33,7 +33,7 @@
                 <!-- 这里是否忽略掉accept header，默认就是false -->
                 <property name="ignoreAcceptHeader" value="true"/>
                 <!-- 如果所有的mediaType都没匹配上，就会使用defaultContentType -->
-                <property name="defaultContentType" value="application/json"/>
+                <!--<property name="defaultContentType" value="application/json"/>-->
                 <property name="mediaTypes">
                     <map>
                         <entry key="html" value="text/html"/>
@@ -74,7 +74,7 @@
         <property name="order" value="2"/>
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="suffix" value=".jsp"/>
-        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="prefix" value="/"/>
     </bean>
 
     <mvc:interceptors>
