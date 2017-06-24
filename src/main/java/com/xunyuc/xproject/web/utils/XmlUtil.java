@@ -7,19 +7,19 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Xunyuc on 2017/6/17.
  */
-public enum XmlUtilEnum {
+public enum XmlUtil {
 
     INSTANCE;
 
     private Jaxb2Marshaller jaxb2Marshaller;
 
-    XmlUtilEnum(){
+    XmlUtil(){
         jaxb2Marshaller = new Jaxb2Marshaller();
         // 指定包里查找有相关jaxb注解的类
         jaxb2Marshaller.setPackagesToScan("com.xunyuc.xproject");
@@ -42,10 +42,15 @@ public enum XmlUtilEnum {
         resultBean.setResultMessage("xml");
         resultBean.setResultDate(new Date());
 
-        String xml = XmlUtilEnum.INSTANCE.bean2Xml(resultBean);
+        String xml = XmlUtil.INSTANCE.bean2Xml(resultBean);
         System.out.println(xml);
-        System.out.println(XmlUtilEnum.INSTANCE.xml2Bean(xml));
+        System.out.println(XmlUtil.INSTANCE.xml2Bean(xml));
 
+        String s = UUID.randomUUID().toString();
+        //去掉“-”符号
+        String ss =  s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
+        System.out.println(s.length());
+        System.out.println(ss);
 
     }
 }
