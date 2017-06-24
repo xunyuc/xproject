@@ -1,4 +1,5 @@
 import com.xunyuc.xproject.web.bean.po.User;
+import com.xunyuc.xproject.web.bean.proxy.UserProxy;
 import com.xunyuc.xproject.web.service.UserService;
 import com.xunyuc.xproject.web.utils.SpringContextUtil;
 import org.junit.Test;
@@ -18,6 +19,10 @@ public class AnyTest {
         UserService userService = SpringContextUtil.getBean(UserService.class);
         User user = userService.findUserByName("admin");
         System.out.println(user.getSecretKey());
+
+        String[] fields = new String[]{UserProxy.NAME, UserProxy.SECRET_KEY};
+        UserProxy userProxy = userService.findUserProxyByName(fields, "admin");
+        System.out.println(userProxy.getSecretKey());
 
     }
 
