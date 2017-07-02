@@ -1,4 +1,4 @@
-package com.xunyuc.xproject.web.bean.po;
+package com.xunyuc.xproject.web.bean.entity;
 
 /**
  * Created by Xunyuc on 2017/6/24.

@@ -1,6 +1,5 @@
-import com.xunyuc.xproject.web.bean.po.User;
+import com.xunyuc.xproject.web.bean.entity.User;
 import com.xunyuc.xproject.web.bean.proxy.UserProxy;
-import com.xunyuc.xproject.web.bean.proxy.UserProxy2;
 import com.xunyuc.xproject.web.service.UserService;
 import com.xunyuc.xproject.web.utils.SpringContextUtil;
 import org.junit.Test;
@@ -22,19 +21,14 @@ public class AnyTest {
         UserService userService = SpringContextUtil.getBean(UserService.class);
         User user = userService.findUserByName("admin");
         System.out.println(user.getSecretKey());
-
-        String[] fields = new String[]{UserProxy.NAME, UserProxy.SECRET_KEY};
-        UserProxy userProxy = userService.findUserProxyByName(fields, "admin");
-        System.out.println(userProxy.getSecretKey());
-
     }
 
     @Test
     public void test2() {
         UserService userService = SpringContextUtil.getBean(UserService.class);
 
-        EnumSet<UserProxy2.Field> fields = EnumSet.of(UserProxy2.Field.NAME, UserProxy2.Field.SECRET_KEY);
-        UserProxy2 userProxy = userService.findUserProxyByName2(fields, "admin");
+        EnumSet<UserProxy.Field> fields = EnumSet.of(UserProxy.Field.NAME, UserProxy.Field.SECRET_KEY);
+        UserProxy userProxy = userService.findUserProxyByName2(fields, "admin");
         System.out.println(userProxy.getSecretKey());
 
     }

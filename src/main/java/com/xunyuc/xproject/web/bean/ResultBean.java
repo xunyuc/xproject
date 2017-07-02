@@ -1,11 +1,12 @@
 package com.xunyuc.xproject.web.bean;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import javax.xml.transform.stream.StreamResult;
 import java.util.Date;
 
@@ -38,6 +39,8 @@ public class ResultBean {
         this.resultMessage = resultMessage;
     }
 
+    @XmlTransient
+    @JSONField(serialize = false)
     public Date getResultDate() {
         return resultDate;
     }

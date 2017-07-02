@@ -1,8 +1,7 @@
 package com.xunyuc.xproject.web.service;
 
-import com.xunyuc.xproject.web.bean.po.User;
+import com.xunyuc.xproject.web.bean.entity.User;
 import com.xunyuc.xproject.web.bean.proxy.UserProxy;
-import com.xunyuc.xproject.web.bean.proxy.UserProxy2;
 import com.xunyuc.xproject.web.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +21,7 @@ public class UserService {
         return userDAO.findUserByName(name);
     }
 
-    public UserProxy findUserProxyByName(String[] fields, String name) {
-        return userDAO.findUserProxyByName(fields, name);
-    }
-
-    public UserProxy2 findUserProxyByName2(EnumSet<UserProxy2.Field> fields, String name) {
+    public UserProxy findUserProxyByName2(EnumSet<UserProxy.Field> fields, String name) {
         return userDAO.findUserProxyByName2(fields, name);
     }
 

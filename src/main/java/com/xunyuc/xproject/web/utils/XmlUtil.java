@@ -44,13 +44,13 @@ public enum XmlUtil {
 
         String xml = XmlUtil.INSTANCE.bean2Xml(resultBean);
         System.out.println(xml);
-        System.out.println(XmlUtil.INSTANCE.xml2Bean(xml));
+//        System.out.println(XmlUtil.INSTANCE.xml2Bean(xml));
 
-        String s = UUID.randomUUID().toString();
-        //去掉“-”符号
-        String ss =  s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
-        System.out.println(s.length());
-        System.out.println(ss);
+//        String s = UUID.randomUUID().toString();
+//        //去掉“-”符号
+//        String ss =  s.substring(0, 8) + s.substring(9, 13) + s.substring(14, 18) + s.substring(19, 23) + s.substring(24);
+//        System.out.println(s.length());
+//        System.out.println(ss);
 
     }
 }
