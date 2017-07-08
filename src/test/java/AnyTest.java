@@ -1,5 +1,6 @@
-import com.xunyuc.xproject.web.bean.entity.User;
-import com.xunyuc.xproject.web.bean.proxy.UserProxy;
+import com.xunyuc.xproject.web.entity.UserInfo;
+import com.xunyuc.xproject.web.proxy.UserProxy;
+import com.xunyuc.xproject.web.dao.IUserInfoDAO;
 import com.xunyuc.xproject.web.service.UserService;
 import com.xunyuc.xproject.web.utils.SpringContextUtil;
 import org.junit.Test;
@@ -16,21 +17,27 @@ import java.util.EnumSet;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AnyTest {
 
-    //@Test
+    @Test
     public void test1() {
         UserService userService = SpringContextUtil.getBean(UserService.class);
-        User user = userService.findUserByName("admin");
+        UserInfo user = userService.findUserByName("admin");
         System.out.println(user.getSecretKey());
     }
 
-    @Test
+//    @Test
     public void test2() {
-        UserService userService = SpringContextUtil.getBean(UserService.class);
+//        UserService userService = SpringContextUtil.getBean(UserService.class);
+//
+//        EnumSet<UserProxy.Field> fields = EnumSet.of(UserProxy.Field.NAME, UserProxy.Field.SECRET_KEY);
+//        UserProxy userProxy = userService.findUserProxyByName2(fields, "admin");
+//        System.out.println(userProxy.getSecretKey());
 
-        EnumSet<UserProxy.Field> fields = EnumSet.of(UserProxy.Field.NAME, UserProxy.Field.SECRET_KEY);
-        UserProxy userProxy = userService.findUserProxyByName2(fields, "admin");
-        System.out.println(userProxy.getSecretKey());
+    }
 
+    @Test
+    public void test3() {
+        IUserInfoDAO IUserInfoDAO = SpringContextUtil.getBean(IUserInfoDAO.class);
+        IUserInfoDAO.findUserByName("admin");
     }
 
 }

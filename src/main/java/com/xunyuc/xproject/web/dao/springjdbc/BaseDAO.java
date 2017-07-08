@@ -1,4 +1,4 @@
-package com.xunyuc.xproject.web.dao;
+package com.xunyuc.xproject.web.dao.springjdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

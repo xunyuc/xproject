@@ -1,7 +1,8 @@
-package com.xunyuc.xproject.web.dao;
+package com.xunyuc.xproject.web.dao.springjdbc;
 
-import com.xunyuc.xproject.web.bean.entity.User;
-import com.xunyuc.xproject.web.bean.proxy.UserProxy;
+import com.xunyuc.xproject.web.dao.IUserInfoDAO;
+import com.xunyuc.xproject.web.entity.UserInfo;
+import com.xunyuc.xproject.web.proxy.UserProxy;
 import org.springframework.stereotype.Repository;
 
 import java.util.EnumSet;
@@ -11,15 +12,15 @@ import java.util.Map;
 /**
  * Created by Xunyuc on 2017/6/24.
  */
-@Repository
-public class UserDAO extends BaseDAO {
+@Repository("springUserInfoDAO")
+public class UserInfoDAOImpl extends BaseDAO implements IUserInfoDAO {
 
-    private static String findSql = "select * from user where name = (:name)";
+    private static String findSql = "select * from user_info where name = (:name)";
 
-    public User findUserByName(String name) {
+    public UserInfo findUserByName(String name) {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("name", name);
-        User user = this.namedQueryForObject(findSql, User.class, paramMap);
+        UserInfo user = this.namedQueryForObject(findSql, UserInfo.class, paramMap);
         return user;
     }
 
@@ -40,7 +41,7 @@ public class UserDAO extends BaseDAO {
         sql.append(" from user where name = (:name) ");
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("name", name);
-        User user = this.namedQueryForObject(sql.toString(), User.class, paramMap);
+        UserInfo user = this.namedQueryForObject(sql.toString(), UserInfo.class, paramMap);
         return new UserProxy(fields, user);
     }
 
