@@ -4,6 +4,7 @@ import com.xunyuc.xproject.web.dao.IUserInfoDAO;
 import com.xunyuc.xproject.web.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -13,9 +14,10 @@ import javax.annotation.Resource;
 @Service
 public class UserService {
 
-    @Resource(name = "mybatisUserInfoDAO")
+    @Resource(name = "hibernateUserInfoDAO")
     private IUserInfoDAO userInfoDAO;
 
+    @Transactional(readOnly=true)
     public UserInfo findUserByName(String name) {
         return userInfoDAO.findUserByName(name);
     }
