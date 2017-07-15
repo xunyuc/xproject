@@ -5,16 +5,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user_info")
 public class UserInfo {
-    private String id;
-
-    private String name;
-
-    private String secretKey;
-
-    private Integer lastLoginTime;
-
     @Id
     @Column(name = "id")
+    private String id;
+
+    @Basic
+    @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "secret_key")
+    private String secretKey;
+
+    @Basic
+    @Column(name = "last_login_time")
+    private Integer lastLoginTime;
+
+
     public String getId() {
         return id;
     }
@@ -23,8 +30,7 @@ public class UserInfo {
         this.id = id == null ? null : id.trim();
     }
 
-    @Basic
-    @Column(name = "name")
+
     public String getName() {
         return name;
     }
@@ -33,8 +39,7 @@ public class UserInfo {
         this.name = name == null ? null : name.trim();
     }
 
-    @Basic
-    @Column(name = "secret_key")
+
     public String getSecretKey() {
         return secretKey;
     }
@@ -43,8 +48,7 @@ public class UserInfo {
         this.secretKey = secretKey == null ? null : secretKey.trim();
     }
 
-    @Basic
-    @Column(name = "last_login_time")
+
     public Integer getLastLoginTime() {
         return lastLoginTime;
     }
