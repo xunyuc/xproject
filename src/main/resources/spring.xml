@@ -32,6 +32,7 @@
     </context:component-scan>
 
     <import resource="spring-dao.xml" />
+    <import resource="spring-redis.xml" />
     <import resource="spring-shiro.xml" />
 
 </beans>

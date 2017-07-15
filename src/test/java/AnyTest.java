@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import redis.clients.jedis.Jedis;
 
 import java.util.EnumSet;
 
@@ -19,9 +20,12 @@ public class AnyTest {
 
     @Test
     public void test1() {
-        UserService userService = SpringContextUtil.getBean(UserService.class);
-        UserInfo user = userService.findUserByName("admin");
-        System.out.println(user.getSecretKey());
+//        UserService userService = SpringContextUtil.getBean(UserService.class);
+//        UserInfo user = userService.findUserByName("admin");
+//        System.out.println(user.getSecretKey());
+        Jedis jedis = new Jedis("192.168.80.130", 6379);
+        jedis.set("test","testtest");
+
     }
 
 //    @Test

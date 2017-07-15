@@ -3,6 +3,12 @@
 <html>
 <body>
 <h2>Hello World!</h2>
+<%
+    HttpSession s = request.getSession();
+%>
+得到Session的ID值是<%=s.getId() %>
+<br>
+
 <shiro:principal/> <br>
 <shiro:hasRole name="admin">需要管理员角色</shiro:hasRole> <br>
 <shiro:hasRole name="guest">需要Guest角色</shiro:hasRole> <br>
