@@ -34,7 +34,7 @@ public class HomeController {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
         SecurityUtils.getSubject().logout();
         redirectAttributes.addFlashAttribute("message", "您已安全退出");
-        return "redirect:/login.jsp";
+        return "login";
     }
 
     @RequestMapping("/403")
