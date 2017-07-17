@@ -4,17 +4,23 @@ import com.alibaba.fastjson.JSONObject;
 import com.xunyuc.xproject.web.utils.SerializableUtils;
 import com.xunyuc.xproject.web.utils.ServletUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
+import org.apache.shiro.web.subject.WebSubject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ReflectionUtils;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
@@ -100,6 +106,12 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
     public void delete(Session session) {
         if (session == null || session.getId() == null) {
             return;
+        }
+        ServletRequest servletRequest = ((WebSubject) SecurityUtils.getSubject()).getServletRequest();
+        if (servletRequest instanceof ShiroHttpServletRequest) {
+            Field field = ReflectionUtils.findField(ShiroHttpServletRequest.class, "session");
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, servletRequest, null);
         }
         String key = prefix + session.getId().toString();
         redisTemplate.delete(key);
