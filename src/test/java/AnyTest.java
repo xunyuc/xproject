@@ -8,8 +8,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisSentinelPool;
 
 import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Xunyuc on 2017/6/24.
@@ -23,8 +26,15 @@ public class AnyTest {
 //        UserService userService = SpringContextUtil.getBean(UserService.class);
 //        UserInfo user = userService.findUserByName("admin");
 //        System.out.println(user.getSecretKey());
-        Jedis jedis = new Jedis("192.168.80.130", 6379);
-        jedis.set("test","testtest");
+//        Jedis jedis = new Jedis("192.168.80.134", 6380);
+//        jedis.set("test","testtest");
+
+        Set<String> set = new HashSet();
+        set.add("192.168.80.134:26379");
+        set.add("192.168.80.134:26380");
+        set.add("192.168.80.134:26381");
+        JedisSentinelPool jedisSentinelPool = new JedisSentinelPool("mymaster", set);
+        jedisSentinelPool.getResource().set("test","testtest");
 
     }
 

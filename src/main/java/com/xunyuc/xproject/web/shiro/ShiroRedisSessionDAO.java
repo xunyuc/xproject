@@ -1,19 +1,17 @@
 package com.xunyuc.xproject.web.shiro;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xunyuc.xproject.web.utils.SerializableUtils;
+import com.xunyuc.xproject.web.utils.JedisUtil;
 import com.xunyuc.xproject.web.utils.ServletUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
-import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.subject.WebSubject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
@@ -32,8 +30,6 @@ import java.util.concurrent.TimeUnit;
 public class ShiroRedisSessionDAO extends AbstractSessionDAO {
 
     private static final String prefix = "shirosession:";
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Override
     protected Serializable doCreate(Session session) {
@@ -69,9 +65,9 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
 
         Session session = null;
         String key = prefix + sessionId.toString();
-        String sessionStr = (String) redisTemplate.opsForValue().get(key);
+        String sessionStr = JedisUtil.get(key);
         if (StringUtils.isNotBlank(sessionStr)) {
-            session = (Session) SerializableUtils.deserialize(sessionStr);
+            session = (Session) deserialize(sessionStr);
         }
 
 //        if (request != null && session != null){
@@ -114,7 +110,7 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
             ReflectionUtils.setField(field, servletRequest, null);
         }
         String key = prefix + session.getId().toString();
-        redisTemplate.delete(key);
+        JedisUtil.del(key);
     }
 
     public Collection<Session> getActiveSessions() {
@@ -126,9 +122,30 @@ public class ShiroRedisSessionDAO extends AbstractSessionDAO {
             return;
         }
         String key = prefix + session.getId().toString();
-        String value = SerializableUtils.serialize(session);
-        redisTemplate.opsForValue().set(key, value, session.getTimeout(), TimeUnit.MINUTES);
+        String value = serialize(session);
+        // 设置超期时间
+        int timeoutSeconds = (int)(session.getTimeout() / 1000);
+        JedisUtil.set(key, value, timeoutSeconds);
     }
 
+    public static String serialize(Object obj) {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(obj);
+            return Base64.encodeToString(bos.toByteArray());
+        } catch (Exception e) {
+            throw new RuntimeException("serialize session error", e);
+        }
+    }
+    public static Object deserialize(String str) {
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(Base64.decode(str));
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            return ois.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException("deserialize session error", e);
+        }
+    }
 
 }
