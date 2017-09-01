@@ -2,6 +2,7 @@ package com.xunyuc.xproject.web.bean;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.eclipse.persistence.oxm.annotations.XmlCDATA;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import javax.xml.bind.JAXBContext;
@@ -22,7 +23,7 @@ public class ResultBean {
 
     private Date resultDate;
 
-
+    @XmlCDATA
     public String getResultCode() {
         return resultCode;
     }

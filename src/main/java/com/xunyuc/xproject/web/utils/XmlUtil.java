@@ -8,6 +8,8 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -23,6 +25,9 @@ public enum XmlUtil {
         jaxb2Marshaller = new Jaxb2Marshaller();
         // 指定包里查找有相关jaxb注解的类
         jaxb2Marshaller.setPackagesToScan("com.xunyuc.xproject");
+        Map<String,Object> properties = new HashMap<String, Object>();
+        properties.put(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);   //格式化xml
+        jaxb2Marshaller.setMarshallerProperties(properties);//设置Marshaller属性
     }
 
     public String bean2Xml(Object bean){
